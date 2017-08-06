@@ -4,9 +4,6 @@ RUN apt-get update && \
     apt-get install -y curl g++ gcc libgnutls28-dev libgnutlsxx28 libmicrohttpd-dev libudev-dev make && \
     mkdir /open-zwave && \
     curl -fsSL https://api.github.com/repos/OpenZWave/open-zwave/tarball/master | tar xz -C /open-zwave --strip-components 1 && \
-    ./configure && \
-    make && \
-    make install && \
     cd /open-zwave && \
     make && \
     mkdir /open-zwave-control-panel && \
