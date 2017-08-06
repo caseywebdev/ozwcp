@@ -2,15 +2,14 @@ FROM resin/rpi-raspbian:jessie
 
 RUN apt-get update && \
     apt-get install -y curl g++ gcc libgnutls28-dev libgnutlsxx28 libudev-dev make && \
-    mkdir /libmicrohttpd /open-zwave /open-zwave-control-panel && \
-    curl -fsSL ftp://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-latest.tar.gz | tar xz -C /libmicrohttpd --strip-components 1 && \
+    mkdir /usr/local/src/libmicrohttpd /open-zwave /open-zwave-control-panel && \
+    curl -fsSL ftp://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-latest.tar.gz | tar xz -C /usr/local/src/libmicrohttpd --strip-components 1 && \
     curl -fsSL https://api.github.com/repos/OpenZWave/open-zwave/tarball/master | tar xz -C /open-zwave --strip-components 1 && \
     curl -fsSL https://api.github.com/repos/OpenZWave/open-zwave-control-panel/tarball/master | tar xz -C /open-zwave-control-panel --strip-components 1 && \
-    cd /libmicrohttpd && \
+    cd /usr/local/src/libmicrohttpd && \
     ./configure && \
     make && \
     make install && \
-    rm -fr /libmicrohttpd && \
     cd /open-zwave && \
     make && \
     cd /open-zwave-control-panel && \
