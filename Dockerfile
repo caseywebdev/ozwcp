@@ -23,4 +23,6 @@ WORKDIR /open-zwave-control-panel
 
 EXPOSE 8090
 
-RUN ["ozwcp"]
+ENTRYPOINT
+
+CMD ["ozwcp"]
