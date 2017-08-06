@@ -19,6 +19,8 @@ RUN apt-get update && \
     ln -s /open-zwave/config && \
     ln -s /open-zwave-control-panel/ozwcp /usr/local/bin/
 
+WORKDIR /open-zwave-control-panel
+
 EXPOSE 8090
 
 RUN ["ozwcp"]
