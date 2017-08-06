@@ -7,4 +7,5 @@ services:
       - /dev/ttyACM0:/zwaveusbstick
     ports:
       - 8090:8090
-    network_mode: host
+    volumes:
+      - ./options.xml:/open-zwave/config/options.xml
