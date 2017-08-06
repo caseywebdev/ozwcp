@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  ozwcp:
+    build: .
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    ports:
+      - 8090:8090
+    network_mode: host
