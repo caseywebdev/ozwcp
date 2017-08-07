@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+NAME=${NAME:-ozwcp}
+DEVICE=${DEVICE:-/dev/ttyACM0}
+PORT=${PORT:-8090}
+
+docker build --file Dockerfile-`uname -m` --tag $NAME .
+
+set +e
+docker stop $NAME 2>/dev/null
+docker rm -f $NAME 2>/dev/null
+set -e
+
+exec docker run \
+  --detach \
+  --device $DEVICE:$DEVICE
+  --name $NAME \
+  --publish $PORT:8090 \
+  --restart always \
+  --volume `pwd`/options.xml:/open-zwave/config/options.xml \
+  $NAME
